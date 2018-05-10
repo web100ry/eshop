@@ -7,7 +7,7 @@
  */
 
 namespace app\models;
-use yii\db\ActiveRecord
+use yii\db\ActiveRecord;
 
 class Product extends ActiveRecord{
 
