@@ -15,6 +15,7 @@ class CategoryController extends AppController
 {
     public function actionIndex() {
        $hits = Product::find()->where(['hit' => '1'])->limit(9)->all();
+       $this->setMeta('eShopper');
         //debug($hits);
        return $this->render('index', compact('hits'));
 
@@ -23,7 +24,9 @@ class CategoryController extends AppController
     $id=Yii::$app->request->get('id');
     //debug($id);
         $products=Product::find()->where(['category_id'=> $id])->all();
+        $category = Category::findOne($id);
  //    debug($products);
-     return $this->render('view', compact('products') );
+        $this->setMeta('eShopper | '.$category->name, $category->keywords, $category->description);
+     return $this->render('view', compact('products','category') );
     }
 }
