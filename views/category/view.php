@@ -4,6 +4,7 @@
 
 //$this->title = 'My Yii Application';
 use yii\helpers\Html;
+use yii\widgets\LinkPager;
 ?>
 <section id="advertisement">
     <div class="container">
@@ -101,12 +102,20 @@ use yii\helpers\Html;
                                 <?php endif;?>
                             <?php endforeach;?>
                         <div class="clearfix"></div>
+<?php
+                        echo LinkPager::widget([
+                        'pagination' => $pages,
+                        ]);
+ ?>
+                    <!--
                     <ul class="pagination">
                         <li class="active"><a href="">1</a></li>
                         <li><a href="">2</a></li>
                         <li><a href="">3</a></li>
                         <li><a href="">&raquo;</a></li>
                     </ul>
+                     -->
+
                         <?php else:?>
                         <h3 align="center">Вибачте, в цій категорії товарів немає.</h3>
                     <?php endif; ?>
