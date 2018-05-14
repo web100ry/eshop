@@ -23,7 +23,7 @@ class CategoryController extends AppController
 
     }
     public function actionView($id){
-    $id=Yii::$app->request->get('id');
+    //$id=Yii::$app->request->get('id');
         $category = Category::findOne($id);
         if (empty($category)) {
             throw new \yii\web\HttpException(404, "Вибачте, такої категорії не існує!");
@@ -37,5 +37,15 @@ class CategoryController extends AppController
  //    debug($products);
         $this->setMeta('eShopper | '.$category->name, $category->keywords, $category->description);
      return $this->render('view', compact('products','pages','category') );
+    }
+
+    public function actionSearch(){
+        $search=trim(Yii::$app->request->get('search'));
+        if(!$search)return $this->render('search');
+        $query=Product::find()->where(['like', 'name', $search]);
+        $pages = new Pagination(['totalCount'=>$query->count(), 'pageSize'=>3, 'forcePageParam' => false, 'pageSizeParam' => false]);
+        $products=$query->offset($pages->offset)->limit($pages->limit)->all();
+        $this->setMeta('eShopper | Пошук: '.$search);
+        return $this->render('search', compact('products','pages','search') );
     }
 }

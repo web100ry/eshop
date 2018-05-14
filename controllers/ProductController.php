@@ -15,7 +15,7 @@ use Yii;
 class ProductController extends AppController
 {
 public function actionView($id){
-    $id = Yii::$app->request->get('id');
+  //  $id = Yii::$app->request->get('id');
     //$product = Product::findOne($id);
     $product = Product::find()->with('category')->where(['id'=> $id])->limit(1)->one();
     if (empty($product)) {
