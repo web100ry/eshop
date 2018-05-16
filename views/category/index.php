@@ -1,11 +1,8 @@
 <?php
 
 /* @var $this yii\web\View */
-
-//$this->title = 'My Yii Application';
 use yii\helpers\Html;
 ?>
-
 <section id="slider"><!--slider-->
     <div class="container">
         <div class="row">
@@ -77,8 +74,6 @@ use yii\helpers\Html;
             <div class="col-sm-3">
                 <div class="left-sidebar">
                     <h2>Category</h2>
-
-
                     <ul class="catalog category-products">
                         <?= \app\components\MenuWidget::widget(['tpl' => 'menu'])?>
                     </ul>
@@ -114,53 +109,36 @@ use yii\helpers\Html;
             </div>
 
             <div class="col-sm-9 padding-right">
-<?php //debug($hits);?>
-                <?php if (!empty($hits)): ?>
-                <div class="features_items"><!--features_items-->
-                    <h2 class="title text-center">Features Items</h2>
-                <?php foreach ($hits as $hit): ?>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-
-                                    <?= Html::img("@web/images/products/{$hit->img}", ['alt'=>$hit->name])?>
-                                    <h2>$<?= $hit->price ?></h2>
-                                    <p><a href="<?=\yii\helpers\Url::to(['product/view', 'id'=>$hit->id])?>"><?= $hit->name ?></a></p>
-                                    <a href="<?=\yii\helpers\Url::to(['cart/add', 'id'=>$hit->id])?>" data-id = "<?= $hit->id?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-                                <!--
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<?= $hit->price ?></h2>
-                                        <p><?= $hit->name ?></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                <?php if( !empty($hits) ): ?>
+                    <div class="features_items"><!--features_items-->
+                        <h2 class="title text-center">Features Items</h2>
+                        <?php foreach($hits as $hit): ?>
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <?= Html::img("@web/images/products/{$hit->img}", ['alt' => $hit->name])?>
+                                            <h2>$<?= $hit->price?></h2>
+                                            <p><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $hit->id]) ?>"><?= $hit->name?></a></p>
+                                            <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $hit->id])?>" data-id="<?= $hit->id?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+                                        <?php if($hit->new): ?>
+                                            <?= Html::img("@web/images/home/new.png", ['alt' => 'Новинка', 'class' => 'new'])?>
+                                        <?php endif?>
+                                        <?php if($hit->sale): ?>
+                                            <?= Html::img("@web/images/home/sale.png", ['alt' => 'Распродажа', 'class' => 'new'])?>
+                                        <?php endif?>
+                                    </div>
+                                    <div class="choose">
+                                        <ul class="nav nav-pills nav-justified">
+                                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                        </ul>
                                     </div>
                                 </div>
-                                -->
-                                <?php if ($hit->new):?>
-                                <!--    <img src="images/home/new.png" class="new" alt="Новинка" /> -->
-                                    <?= Html::img("@web/images/home/new.png", ['alt'=>"Новинка", 'class'=>'new'])?>
-                                <?php endif;?>
-
-                                <?php if ($hit->sale):?>
-                                    <img src="images/home/sale.png" class="new" alt="Розпродаж" />
-                                <?php endif;?>
-                        </div>
-
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                </ul>
                             </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-
-                    </div>
-
-                </div><!--features_items-->
+                        <?php endforeach;?>
+                    </div><!--features_items-->
                 <?php endif; ?>
 
                 <div class="category-tab"><!--category-tab-->

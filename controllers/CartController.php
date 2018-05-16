@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Andrey
- * Date: 14.05.2016
- * Time: 10:37
- */
+
 
 namespace app\controllers;
 use app\models\Product;
@@ -38,8 +33,10 @@ class CartController extends AppController{
         $id = Yii::$app->request->get('id');
         $product = Product::findOne($id);
         if(empty($product)) return false;
-        //debug($product);
-
+        $session =Yii::$app->session;
+        $session->open();
+        $cart = new Cart();
+        $cart->addToCart($product);
     }
 
-}
+} 
