@@ -93,6 +93,7 @@ use yii\helpers\Html;
                         </div>
                     </div><!--/brands_products-->
 
+
                     <div class="price-range"><!--price-range-->
                         <h2>Price Range</h2>
                         <div class="well text-center">
@@ -100,6 +101,8 @@ use yii\helpers\Html;
                             <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
                         </div>
                     </div><!--/price-range-->
+
+
 
                     <div class="shipping text-center"><!--shipping-->
                         <img src="images/home/shipping.jpg" alt="" />

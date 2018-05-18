@@ -24,6 +24,7 @@ class CategoryController extends AppController
     }
     public function actionView($id){
     //$id=Yii::$app->request->get('id');
+
         $category = Category::findOne($id);
         if (empty($category)) {
             throw new \yii\web\HttpException(404, "Вибачте, такої категорії не існує!");
