@@ -118,7 +118,7 @@ use yii\helpers\Html;
                         <?php foreach($hits as $hit): ?>
                             <div class="col-sm-4">
                                 <div class="product-image-wrapper">
-                                    <div class="single-products">
+                                    <div class="single-products"> 
                                         <div class="productinfo text-center">
                                             <?= Html::img("@web/images/products/{$hit->img}", ['alt' => $hit->name])?>
                                             <h2>$<?= $hit->price?></h2>
