@@ -108,7 +108,7 @@ AppLtAsset::register($this);
                             <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="#" onclick="return getCart()"> <i class="fa fa-shopping-cart"></i> Cart</a></li>
                             <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
                         </ul>
                     </div>
@@ -328,9 +328,9 @@ AppLtAsset::register($this);
 \yii\bootstrap\Modal::begin([
     'header' => '<h2>Корзина</h2>',
     'id' => 'cart',
-    'footer' => ' <button type="button" class="btn btn-default">Продовжити покупки</button>
+    'footer' => ' <button type="button" class="btn btn-default" data-dismiss="modal">Продовжити покупки</button>
         <button type="button" class="btn btn-success" data-dismiss="modal">Оформити замовлення</button>
-        <button type="button" class="btn btn-danger" onclick="clearCart()" data-dismiss="modal" >Очистити корзину</button>',
+        <button type="button" class="btn btn-danger" onclick="clearCart()">Очистити корзину</button>',
     'size'=>'modal-lg'
 
 ]);

@@ -6,9 +6,27 @@ $('.catalog').dcAccordion({
     speed: 300
 });
 
-function clearCart() {
+$('#cart .modal-body').on('click', ' .del-item', function() {
+    //alert(123);
+    var id = $(this).data('id');
+
     $.ajax({
-        url: 'cart/clear',
+        url: '/cart/del-item',
+        data: {id: id},
+        type: 'GET',
+        success: function (res) {
+            if (!res) alert('Ошибка!');
+            //console.log(res);
+            showCart(res);
+        },
+        error: function () {
+            alert('Error!');
+        }
+    });
+    });
+function getCart() {
+    $.ajax({
+        url: '/cart/show',
         type: 'GET',
         success: function(res){
             if(!res) alert('Ошибка!');
@@ -19,7 +37,22 @@ function clearCart() {
             alert('Error!');
         }
     });
+    return false;
 }
+    function clearCart(){
+        $.ajax({
+            url: '/cart/clear',
+            type: 'GET',
+            success: function(res){
+                if(!res) alert('Ошибка!');
+                //console.log(res);
+                showCart(res);
+            },
+            error: function(){
+                alert('Error!');
+            }
+        });
+    }
 
 function showCart(cart){
     $('#cart .modal-body').html(cart);
