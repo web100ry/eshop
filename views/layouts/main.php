@@ -324,6 +324,20 @@ AppLtAsset::register($this);
     </div>
 
 </footer><!--/Footer-->
+<?php
+\yii\bootstrap\Modal::begin([
+    'header' => '<h2>Корзина</h2>',
+    'id' => 'cart',
+    'footer' => ' <button type="button" class="btn btn-default">Продовжити покупки</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Оформити замовлення</button>
+        <button type="button" class="btn btn-danger" onclick="clearCart()" data-dismiss="modal" >Очистити корзину</button>',
+    'size'=>'modal-lg'
+
+]);
+
+\yii\bootstrap\Modal::end();
+?>
+
 <?php $this->endBody() ?>
 </body>
 </html>

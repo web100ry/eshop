@@ -11,11 +11,13 @@ class Cart extends ActiveRecord
 
         if ($_SESSION['cart'][$product->id] <> null) {
             $_SESSION['cart'][$product->id]['qty'] += $qty;
+
         } else {
             $_SESSION['cart'][$product->id] = [
                 'qty' => $qty,
                 'name' => $product->name,
                 'img' => $product->img,
+                'price'=> $product->price
             ];
         }
 
@@ -30,5 +32,6 @@ class Cart extends ActiveRecord
         }else{
             $_SESSION['cart.sum']= $qty*$product->price;
         }
+
     }
 }

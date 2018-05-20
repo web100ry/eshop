@@ -7,6 +7,7 @@
                 <th>Назва</th>
                 <th>Ціна</th>
                 <th>Кількість</th>
+                <th>Сума</th>
                 <th><span class="glyphicon glyphicon-remove" aria-hidden="true"</span></th>
             </tr>
            </thead>
@@ -15,18 +16,21 @@
             <tr>
             <td><?=$item['img']?></td>
             <td><?=$item['name']?></td>
-            <td><?=$item['price']?></td>
-            <td><?=$item['qty']?></td>
-            <td><span class="glyphicon glyphicon-removev text-danger del-item" aria-hidden="true"</span></td>
+            <td align="center"><?=$item['price']?></td>
+            <td align="center"><?=$item['qty']?></td>
+            <td align="center"><?=$item['qty']*$item['price']?></td>
+
+            <td><span class="glyphicon glyphicon-remove text-danger del-item" aria-hidden="true"</span></td>
             </tr>
             <?php endforeach;?>
+
             <tr>
-                <td colspan="4">Всього:</td>
-                <td><?= $session['cart.qty']?></td>
+                <td colspan="5"><strong>Всього товарів:</strong></td>
+                <td><strong><?= $session['cart.qty']?></strong></td>
             </tr>
             <tr>
-                <td colspan="4">На суму:</td>
-                <td><?= $session['cart.sum']?></td>
+                <td colspan="5"><strong>На загальну суму:</strong></td>
+                <td><strong><?= $session['cart.sum']?></strong></td>
             </tr>
 
             </tbody>
