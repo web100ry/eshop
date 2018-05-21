@@ -30,13 +30,15 @@ class CartController extends AppController{
 
     public function actionAdd(){
         $id = Yii::$app->request->get('id');
+        $qty = (int) Yii::$app->request->get('qty');
+        $qty = !$qty ? 1 : $qty;
         $product = Product::findOne($id);
     //    debug($product);
       if(empty($product)) return false;
       $session =Yii::$app->session;
       $session->open();
       $cart = new Cart();
-      $cart->addToCart($product);
+      $cart->addToCart($product, $qty);
       $this->layout=false;
 //   debug($_SESSION['cart']);
 //      debug($_SESSION['cart.qty']);

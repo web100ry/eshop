@@ -61,13 +61,14 @@ function showCart(cart){
 
 $('.add-to-cart').on('click', function (e) {
     e.preventDefault();
-    var id = $(this).data('id');
+    var id = $(this).data('id'),
+        qty=$('#qty').val();
 
     $.ajax({
         url: 'cart/add',
-        data: {id: id},
+        data: {id: id, qty: qty},
         type: 'GET',
-        success: function(res){
+        success: function(res){ 
             if(!res) alert('Ошибка!');
             //console.log(res);
             showCart(res);
