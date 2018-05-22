@@ -109,7 +109,10 @@ use yii\helpers\Html;
 									<span>US $<?= $product->price?></span>
 									<label>Quantity:</label>
 									<input type="number" value="1" id="qty"/>
-									<a href="#" data-id="<?= $product->id?>"  class="btn btn-fefault add-to-cart cart">
+									<a href="<?php
+                                    // даний код для выдключеного js за умовчанням "#"
+                                    echo \yii\helpers\Url::to(['cart/add', 'id'=>$product->id])
+                                    ?>" data-id="<?= $product->id?>"  class="btn btn-fefault add-to-cart cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
 									</a>

@@ -66,15 +66,15 @@ use yii\widgets\LinkPager;
                                     <?= Html::img("@web/images/products/{$product->img}", ['alt'=>$product->name])?>
                                     <h2>$<?=$product->price?></h2>
                                     <p><a href="<?=\yii\helpers\Url::to(['product/view', 'id'=>$product->id])?>"><?= $product->name ?></a></p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    <a href="<?php
+                                    // даний код для выдключеного js за умовчанням "#"
+                                    echo \yii\helpers\Url::to(['cart/add', 'id'=>$product->id])
+                                    ?>" data-id="<?= $product->id?>"  class="btn btn-fefault add-to-cart cart">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        Add to cart
+                                    </a>
                                 </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<?=$product->price?></h2>
-                                        <p><a href="<?=\yii\helpers\Url::to(['product/view', 'id'=>$product->id])?>"><?= $product->name ?></a></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
+
 
                                 <?php if ($product->new):?>
                                     <!--    <img src="images/home/new.png" class="new" alt="Новинка" /> -->
