@@ -329,7 +329,7 @@ AppLtAsset::register($this);
     'header' => '<h2>Корзина</h2>',
     'id' => 'cart',
     'footer' => ' <button type="button" class="btn btn-default" data-dismiss="modal">Продовжити покупки</button>
-        <a href="'.\yii\helpers\Url::to(['cart/view']).'"class="btn btn-success">Оформити замовлення</a>
+        <a href="'.\yii\helpers\Url::to(['cart/view']).'" class="btn btn-success">Оформити замовлення</a>
         <button type="button" class="btn btn-danger" onclick="clearCart()">Очистити корзину</button>',
     'size'=>'modal-lg'
 
