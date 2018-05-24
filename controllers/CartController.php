@@ -98,7 +98,13 @@ class CartController extends AppController
          if ($order->save()){
                 $this->saveOrderItems($session['cart'], $order->id);
              Yii::$app->session->setFlash('success','Ваше замовлення прийняте. Очікуйте дзвінка нашого менеджера');
-        $session->remove('cart');
+        Yii::$app->mailer->compose('order', ['session'=>$session])
+            ->setFrom('web100ry@gmail.com')
+            ->setTo($order->email)
+            ->setSubject('Замовлення інтернет-магазину eShopper')
+            ->send();
+
+             $session->remove('cart');
         $session->remove('cart.qty');
         $session->remove('cart.sum');
 
@@ -109,6 +115,7 @@ class CartController extends AppController
          }
      }
         return $this->render('view', compact('session','order'));
+
     }
     protected function saveOrderItems($items,$order_id){
         foreach ($items as $id=>$item){
