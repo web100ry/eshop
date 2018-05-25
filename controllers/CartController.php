@@ -98,11 +98,15 @@ class CartController extends AppController
          if ($order->save()){
                 $this->saveOrderItems($session['cart'], $order->id);
              Yii::$app->session->setFlash('success','Ваше замовлення прийняте. Очікуйте дзвінка нашого менеджера');
+
         Yii::$app->mailer->compose('order', ['session'=>$session])
-            ->setFrom('web100ry@gmail.com')
+            ->setFrom(['web100ry@gmail.com'=>'eShoppper.pp.ua'])
             ->setTo($order->email)
             ->setSubject('Замовлення інтернет-магазину eShopper')
             ->send();
+
+//
+
 
              $session->remove('cart');
         $session->remove('cart.qty');
