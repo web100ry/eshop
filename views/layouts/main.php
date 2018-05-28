@@ -340,5 +340,21 @@ AppLtAsset::register($this);
 
 <?php $this->endBody() ?>
 </body>
+
+<script>
+    function Point(x,y) {
+        this.x=x;
+        this.y=y;
+    }
+    var p = new Point(2,5);
+    Point.prototype.r = function () {
+        return Math.sqrt(this.x*this.x+this.y*this.y);
+    };
+var p2 = new Point(4,4);
+    console.log(p.r());
+    console.log(p2.r());
+</script>
+
+
 </html>
 <?php $this->endPage() ?>
