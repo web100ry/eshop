@@ -35,6 +35,15 @@ class LoginForm extends Model
         ];
     }
 
+
+    public  function attributeLabels()
+    {
+        return [
+            'username'=>'Логін',
+            'password'=>'Пароль',
+            'rememberMe'=>'Запам\'ятати'
+        ];
+    }
     /**
      * Validates the password.
      * This method serves as the inline validation for password.
@@ -59,6 +68,13 @@ class LoginForm extends Model
      */
     public function login()
     {
+        if ($this->rememberMe){
+            $u =  $this->user;
+            $u->generateAuthKey();
+            $u->save;
+
+        }
+
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
