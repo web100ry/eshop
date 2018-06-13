@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property string $created_at
  * @property string $updated_at
- * @property int $qty
+ * @property int $qtyr
  * @property double $sum
  * @property string $status
  * @property string $name
@@ -27,6 +27,11 @@ class Order extends \yii\db\ActiveRecord
     {
         return 'order';
     }
+
+
+        public function getOrderItems(){
+            return $this->hasMany(OrderItems::className(), ['order_id' => 'id']);
+        }
 
     /**
      * {@inheritdoc}
@@ -49,16 +54,16 @@ class Order extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'qty' => 'Qty',
-            'sum' => 'Sum',
-            'status' => 'Status',
-            'name' => 'Name',
+            'id' => '№ замовлення',
+            'created_at' => 'Дата створення ',
+            'updated_at' => 'Дата змін',
+            'qty' => 'Кількість',
+            'sum' => 'Сума',
+            'status' => 'Статус',
+            'name' => 'Ім\'я',
             'email' => 'Email',
-            'phone' => 'Phone',
-            'address' => 'Address',
+            'phone' => 'Телефон',
+            'address' => 'Адреса',
         ];
     }
 }
