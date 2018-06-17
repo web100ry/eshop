@@ -142,8 +142,8 @@ AppLtAsset::register($this);
                                 </li>
                                 <li class="dropdown"><a href="#">Товари<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="<?= \yii\helpers\Url::to(['category /index'])?>">Список товарів</a></li>
-                                        <li><a href="<?= \yii\helpers\Url::to(['category/create'])?>">Додати товар</a></li>
+                                        <li><a href="<?= \yii\helpers\Url::to(['product/index'])?>">Список товарів</a></li>
+                                        <li><a href="<?= \yii\helpers\Url::to(['product/create'])?>">Додати товар</a></li>
                                     </ul>
                                 </li>
                                <!--
@@ -175,6 +175,19 @@ AppLtAsset::register($this);
                 </button>
                 <?=Yii::$app->session->getFlash('success');?>
             </div>
+        <?php endif;?>
+
+        <?php if(Yii::$app->session->hasFlash('error')):?>
+
+            <div class="alert alert-danger alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">
+                &times;
+            </span>
+                </button>
+                <?=Yii::$app->session->getFlash('error');?>
+            </div>
+
         <?php endif;?>
     <?= $content ?>
     </div>
