@@ -13,8 +13,8 @@ mihaildev\elfinder\Assets::noConflict($this);
 ?>
 
 <div class="product-form">
-
-    <?php $form = ActiveForm::begin(); ?>
+<?php // debug($model); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?php // $form->field($model, 'category_id')->textInput() ?>
 
@@ -54,7 +54,9 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image')->fileInput() ?>
+
+    <?php //echo $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'hit')->checkbox([ '0', '1', ]) ?>
 
