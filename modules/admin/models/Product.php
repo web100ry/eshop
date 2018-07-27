@@ -60,7 +60,7 @@ class Product extends \yii\db\ActiveRecord
             [['price'], 'number'],
             [['name', 'keywords', 'description', 'img'], 'string', 'max' => 255],
             [['image'], 'file',  'extensions' => 'png, jpg'],
-            //[['gallary'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 4],
+            [['gallery'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 4],
             ] ;
     }
 
@@ -78,6 +78,7 @@ class Product extends \yii\db\ActiveRecord
             'keywords' => 'Ключові слова',
             'description' => 'Мета-опис',
             'image' => 'Фото',
+            'gallery' => 'Галерея',
             'hit' => 'Хіт',
             'new' => 'Новинка',
             'sale' => 'Розпродаж',
@@ -85,8 +86,11 @@ class Product extends \yii\db\ActiveRecord
     }
     public function upload(){
         if ($this->validate()) {
-            $path = 'upload/store' . $this->image->baseName . '.' . $this->image->extension;
+            $path = 'upload/store/'.$this->image->baseName.'.'.$this->image->extension;
             $this->image->saveAs($path);
+            $this->attachImage($path, true);
+            @unlink($path);
+
             return true;
         }
             else{
@@ -94,4 +98,20 @@ class Product extends \yii\db\ActiveRecord
             }
 
     }
+    public function uploadGallery(){
+        if ($this->validate()) {
+            foreach ($this->gallery as $file){
+            $path = 'upload/store/'.$file->baseName.'.'.$file->extension;
+            $file->saveAs($path);
+            $this->attachImage($path);
+            @unlink($path);
+            }
+            return true;
+        }
+            else{
+                return false;
+            }
+
+    }
+
 }
