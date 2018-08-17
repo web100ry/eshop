@@ -37,7 +37,7 @@ class CartController extends AppController
         $qty = (int)Yii::$app->request->get('qty');
         $qty = !$qty ? 1 : $qty;
         $product = Product::findOne($id);
-        //    debug($product);
+       //   debug($product);
         if (empty($product)) return false;
         $session = Yii::$app->session;
         $session->open();
@@ -51,6 +51,7 @@ class CartController extends AppController
 //      debug($_SESSION['cart.qty']);
 //      debug($_SESSION['cart.sum']);
         return $this->render('cart-modal', compact('session'));
+
 
     }
 
